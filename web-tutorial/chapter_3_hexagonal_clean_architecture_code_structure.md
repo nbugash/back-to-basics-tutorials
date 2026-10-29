@@ -7,46 +7,47 @@
 ## 1. Domain Boundary & Dependency Inversion
 
 ```mermaid
-classDef domainCore fill:#FFF9C4,stroke:#FBC02D,stroke-width:2px,color:#000;
-classDef ports fill:#E8F8F5,stroke:#26A69A,stroke-width:2px,color:#000;
-classDef adapters fill:#EDE7F6,stroke:#7E57C2,stroke-width:2px,color:#000;
+graph TB
+    %% Node Styling Definitions
+    classDef infra fill:#EDE7F6,stroke:#5E35B1,stroke-width:2px,color:#311B92;
+    classDef primaryPort fill:#E1F5FE,stroke:#0288D1,stroke-width:2px,stroke-dasharray: 4 4,color:#01579B;
+    classDef secondaryPort fill:#FFF8E1,stroke:#FFA000,stroke-width:2px,stroke-dasharray: 4 4,color:#FF6F00;
+    classDef appLayer fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+    classDef domainCore fill:#FFEBEE,stroke:#C62828,stroke-width:2.5px,color:#B71C1C;
+    classDef adapter fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C;
 
-class Order {
-    +UUID id
-    +UUID customerId
-    +BigDecimal amount
-    +String currency
-    +OrderStatus status
-    +Instant createdAt
-    +void cancel()
-}
-classDef domainCore
+    subgraph Infrastructure_Layer ["Layer: Infrastructure and Adapters"]
+        REST["Generated OpenAPI Controller<br/>OrderResource"]:::adapter
+        DB_ADAPTER["jOOQ Persistence Adapter<br/>OrderPersistenceAdapter"]:::adapter
+        POSTGRES[("PostgreSQL 18.6")]:::infra
+    end
 
-Order --> OrderStatus:::domainCore
+    subgraph Application_Layer ["Layer: Application and Ports"]
+        IN_PORT["Inbound Port Contract<br/>CreateOrderUseCase"]:::primaryPort
+        SERVICE["Application Service<br/>OrderApplicationService"]:::appLayer
+        OUT_PORT["Outbound Port Contract<br/>OrderRepositoryPort"]:::secondaryPort
+    end
 
-class PlaceOrderUseCasePort {
-    <<interface>>
-    +Order execute(CreateOrderCommand cmd)
-}
-class FindOrderQueryPort {
-    <<interface>>
-    +Optional~Order~ execute(UUID id)
-}
-class OrderRepositoryPort {
-    <<interface>>
-    +Order save(Order order)
-    +Optional~Order~ findById(UUID id)
-}
+    subgraph Domain_Layer ["Layer: Domain Core"]
+        MODEL["Domain Entity / Aggregate<br/>Order, OrderId, OrderStatus"]:::domainCore
+        POLICY["Domain Rules and Policies<br/>OrderValidationRule"]:::domainCore
+    end
 
-OrderService --> PlaceOrderUseCasePort:::ports
-OrderService --> FindOrderQueryPort:::ports
-OrderService ..> OrderRepositoryPort:::ports
+    %% Inbound Flow
+    REST -->|Invokes| IN_PORT
+    SERVICE -.->|Implements| IN_PORT
 
-class RestOrderAdapter:::adapters
-class JooqPostgresAdapter:::adapters
+    %% Domain Orchestration
+    SERVICE -->|Manipulates| MODEL
+    SERVICE -->|Applies| POLICY
 
-RestOrderAdapter ..> PlaceOrderUseCasePort
-JooqPostgresAdapter ..|> OrderRepositoryPort
+    %% Outbound Dependency Inversion
+    SERVICE -->|Calls| OUT_PORT
+    DB_ADAPTER -.->|Implements| OUT_PORT
+    DB_ADAPTER -->|Queries/Updates| POSTGRES
+    DB_ADAPTER -->|Maps to/from| MODEL
+
+    linkStyle default stroke:#455A64,stroke-width:1.5px;
 ```
 
 ---
