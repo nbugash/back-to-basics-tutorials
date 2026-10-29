@@ -61,17 +61,17 @@ graph TD
 
 Follow the step-by-step milestones below. Each chapter corresponds to an isolated, verifiable milestone:
 
-1. [**Chapter 1: Scaffolding the Gradle Build & Quarkus Stack**](chapter_01_scaffolding.md)
+1. [**Chapter 1: Scaffolding the Gradle Build & Quarkus Stack**](chapter_1_gradle_build_quarkus_stack.md)
    * *Milestone:* Configure Gradle 9.8.2 (Kotlin DSL) targeting Java 25 and Quarkus 3.40 with all required plugin dependencies.
-2. [**Chapter 2: Contract-First API Spec & Automated Code Generation**](chapter_02_openapi_contract.md)
+2. [**Chapter 2: Contract-First API Spec & Automated Code Generation**](chapter_2_contract_first_api_spec_code_generation.md)
    * *Milestone:* Design an OpenAPI 3.1 YAML definition and wire up a Gradle build task to auto-generate Jax-RS interfaces and DTOs.
-3. [**Chapter 3: Hexagonal & Clean Architecture Code Structure**](chapter_03_hexagonal_architecture.md)
+3. [**Chapter 3: Hexagonal & Clean Architecture Code Structure**](chapter_3_hexagonal_clean_architecture_code_structure.md)
    * *Milestone:* Structure domain entities, inbound/outbound ports, and domain services strictly isolated from framework annotations.
-4. [**Chapter 4: Persistence with PostgreSQL 18.6 and jOOQ**](chapter_04_jooq_postgres.md)
+4. [**Chapter 4: Persistence with PostgreSQL 18.6 and jOOQ**](chapter_4_persistence_with_postgresql_18_6_and_jooq.md)
    * *Milestone:* Configure PostgreSQL 18.6 container, Flyway schema migrations, and generate/execute type-safe SQL with jOOQ.
-5. [**Chapter 5: Containerization & Docker Compose Local Environment**](chapter_05_docker_compose.md)
+5. [**Chapter 5: Containerization & Docker Compose Local Environment**](chapter_5_docker_containerization_docker_compose.md)
    * *Milestone:* Multi-stage container builds using Java 25 Alpine / Distroless and automated end-to-end local Docker Compose orchestration.
-6. [**Chapter 6: Helm Packaging & K3d/K3s Kubernetes Deployment**](chapter_06_helm_k3d.md)
+6. [**Chapter 6: Helm Packaging & K3d/K3s Kubernetes Deployment**](chapter_6_helm_packaging_k3d_deployment.md)
    * *Milestone:* Package the microservice into a production-grade Helm 3 chart and execute a local cluster verification on K3d/K3s.
 
 ---
