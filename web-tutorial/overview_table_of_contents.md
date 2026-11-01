@@ -50,12 +50,12 @@ graph TD
 
 | Chapter | File | Milestone & Focus |
 |---|---|---|
-| **Chapter 1** | [01-project-setup-and-gradle.md](./01-project-setup-and-gradle.md) | Gradle 9.8.2 Kotlin DSL build configuration, Java 25 toolchains, and Quarkus 3.40 dependency tree. |
-| **Chapter 2** | [02-openapi-contract-first.md](./02-openapi-contract-first.md) | Contract-first API design using OpenAPI 3.1 YAML and automated code generation via OpenAPI Generator Gradle plugin. |
-| **Chapter 3** | [03-hexagonal-domain-and-jooq.md](./03-hexagonal-domain-and-jooq.md) | Clean Domain logic, Inbound/Outbound Ports, PostgreSQL 18 schema migrations (Flyway), and jOOQ code-gen setup. |
-| **Chapter 4** | [04-adapters-and-wiring.md](./04-adapters-and-wiring.md) | Implementing JAX-RS inbound HTTP controllers and jOOQ outbound persistence repositories, wired with Quarkus CDI. |
-| **Chapter 5** | [05-local-infrastructure-compose.md](./05-local-infrastructure-compose.md) | Multi-stage Dockerfile (JVM/Fast-JAR) and Docker Compose setup with PostgreSQL 18.6 and healthchecks. |
-| **Chapter 6** | [06-helm-packaging-and-k3d.md](./06-helm-packaging-and-k3d.md) | Cloud-native packaging with Helm charts and running integration flows on a local K3d/K3s Kubernetes cluster. |
+| **Chapter 1** | [01-project-setup-and-gradle.md](./chapter_1_project_setup_and_gradle.md) | Gradle 9.8.2 Kotlin DSL build configuration, Java 25 toolchains, and Quarkus 3.40 dependency tree. |
+| **Chapter 2** | [02-openapi-contract-first.md](./chapter_2_openapi_contract_first_generation.md) | Contract-first API design using OpenAPI 3.1 YAML and automated code generation via OpenAPI Generator Gradle plugin. |
+| **Chapter 3** | [03-hexagonal-domain-and-jooq.md](./chapter_3_hexagonal_domain_and_jooq_configuration.md) | Clean Domain logic, Inbound/Outbound Ports, PostgreSQL 18 schema migrations (Flyway), and jOOQ code-gen setup. |
+| **Chapter 4** | [04-adapters-and-wiring.md](./chapter_4_adapters_and_wiring.md) | Implementing JAX-RS inbound HTTP controllers and jOOQ outbound persistence repositories, wired with Quarkus CDI. |
+| **Chapter 5** | [05-local-infrastructure-compose.md](./chapter_5_local_infrastructure_and_docker_compose.md) | Multi-stage Dockerfile (JVM/Fast-JAR) and Docker Compose setup with PostgreSQL 18.6 and healthchecks. |
+| **Chapter 6** | [06-helm-packaging-and-k3d.md](./chapter_6_helm_packaging_and_k3d_deployment.md) | Cloud-native packaging with Helm charts and running integration flows on a local K3d/K3s Kubernetes cluster. |
 
 ---
 
